@@ -7,16 +7,17 @@ use logic::read_logic;
 use std::io::{self, Write};
 
 fn main() -> io::Result<()>{
-	let mut input = String::new();
 	println!("Enter a string: ");
-	
 	let _ = io::stdout().flush();
+	
+	let mut input = String::new();
 	io::stdin().read_line(&mut input).expect("Failed to read input" );
 	
-	println!("Your word : {}", input.trim());
+	let word = input.trim();
+	println!("Your word : {}", word);
 	
-	if let Some(File) = choose_file()? {
-		let matched = read_logic(&File, &input)?;
+	if let Some(newfile) = choose_file()? {
+		let matched = read_logic(&newfile, word)?;
 		println!("{matched} words")
 	}
 	
